@@ -1,0 +1,67 @@
+services:
+  rails:
+    container_name: rails
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PORT: ${PORT:-3000}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+    command: bash -c "./bin/dev"
+    tty: true
+    volumes:
+      - .:/rails
+    extra_hosts:
+      - "localhost:127.0.0.1"
+    ports:
+      - "${HOST:-127.0.0.1}:${PORT:-3000}:${PORT:-3000}"
+    depends_on:
+      - postgres
+    networks:
+      - network
+
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      POSTGRES_DB: ${DATABASE_DATABASE:-postgres}
+    ports:
+      - "${HOST:-127.0.0.1}:${DATABASE_PORT:-5432}:${DATABASE_PORT:-5432}"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - network
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@postgres.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-password}
+      PGADMIN_LISTEN_PORT: ${PGADMIN_PORT:-5050}
+    ports:
+      - "${PGADMIN_PORT:-5050}:${PGADMIN_PORT:-5050}"
+    volumes:
+      - ./pgadmin-servers.json:/pgadmin4/servers.json
+    depends_on:
+      - postgres
+    networks:
+      - network
+
+  redis:
+    container_name: redis
+    image: valkey/valkey:alpine
+    restart: unless-stopped
+    ports:
+      - "${HOST:-127.0.0.1}:${REDIS_PORT:-6379}:${REDIS_PORT:-6379}"
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - network
+
+networks:
+  network:
