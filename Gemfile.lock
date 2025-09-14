@@ -393,6 +393,7 @@ DEPENDENCIES
   cssbundling-rails
   database_cleaner
   debug
+  dotenv
   factory_bot_rails
   faker
   jbuilder
