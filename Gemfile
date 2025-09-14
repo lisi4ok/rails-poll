@@ -36,21 +36,30 @@ gem "bootsnap", require: false
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
 
-# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster]
 gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # See [https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem]
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
+
+  # Combine pry with byebug [https://github.com/deivid-rodriguez/pry-byebug]
+  # gem "pry-byebug"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Faker [https://github.com/faker-ruby/faker]
+  gem "faker"
+
+  # Factory Bot Rails [https://github.com/faker-ruby/faker]
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -59,5 +68,15 @@ group :development do
 end
 
 group :test do
+  # RSpec [https://rspec.info] [https://github.com/rspec/rspec-rails]
   gem "rspec-rails", "~> 8.0.2"
+
+  # Database cleaner [https://github.com/rails/web-console]
+  gem "database_cleaner"
+
+  # You can seamlessly choose between Selenium, Webkit or pure Ruby drivers. [https://github.com/teamcapybara/capybara]
+  gem "capybara"
+
+  # Code coverage [https://github.com/simplecov-ruby/simplecov]
+  gem "simplecov", require: false
 end

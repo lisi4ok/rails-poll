@@ -11,7 +11,11 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
-#
+
+# Code Coverage
+require 'simplecov'
+SimpleCov.start 'rails'
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -91,4 +95,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  # This will disable rspec-rails implicit wrapping of tests in a database transaction.
+  # Without disabling this, none of the following configurations will matter.
+  config.use_transactional_fixtures = false
 end
