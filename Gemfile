@@ -8,14 +8,20 @@ gem "propshaft"
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
+# Vite.js for Rails [https://github.com/vitejs/vite-rails]
+gem "vite_rails", "~> 3.0"
+# Inertia.js for Rails [https://github.com/inertiajs/inertia-rails] [https://inertiajs.com]
+gem "inertia_rails", "~> 3.11"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails"
+#gem "jsbundling-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+#gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+#gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
+#gem "cssbundling-rails"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -23,7 +29,7 @@ gem "jbuilder"
 gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ windows jruby ]
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
@@ -79,6 +85,9 @@ group :test do
 
   # You can seamlessly choose between Selenium, Webkit or pure Ruby drivers. [https://github.com/teamcapybara/capybara]
   gem "capybara"
+
+  # Selenium [https://github.com/SeleniumHQ/selenium/tree/trunk/rb]
+  gem "selenium-webdriver"
 
   # Code coverage [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false

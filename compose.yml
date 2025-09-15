@@ -1,25 +1,25 @@
 services:
-  rails:
-    container_name: rails
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        ENVIRONMENT: ${ENVIRONMENT:-development}
-    environment:
-      PORT: ${PORT:-3000}
-    command: bash -c "./bin/dev"
-    tty: true
-    volumes:
-      - .:/rails
-    extra_hosts:
-      - "localhost:127.0.0.1"
-    ports:
-      - "${HOST:-127.0.0.1}:${PORT:-3000}:${PORT:-3000}"
-    depends_on:
-      - postgres
-    networks:
-      - network
+#  rails:
+#    container_name: rails
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      args:
+#        ENVIRONMENT: ${ENVIRONMENT:-development}
+#    environment:
+#      PORT: ${PORT:-3000}
+#    command: bash -c "./bin/dev"
+#    tty: true
+#    volumes:
+#      - .:/rails
+#    extra_hosts:
+#      - "localhost:127.0.0.1"
+#    ports:
+#      - "${HOST:-127.0.0.1}:${PORT:-3000}:${PORT:-3000}"
+#    depends_on:
+#      - postgres
+#    networks:
+#      - network
 
   postgres:
     container_name: postgres

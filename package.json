@@ -1,21 +1,29 @@
 {
   "name": "app",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "bun bun.config.js",
-    "build:css": "bunx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
-  },
-  "dependencies": {
-    "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.0",
-    "bun-plugin-tailwind": "latest",
-    "tailwindcss": "^4.1.13"
+    "check": "tsc -p tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.1.13",
     "@types/bun": "latest",
-    "@types/node": "^24.4.0",
-    "bun": "^1.2.22"
+    "vite": "^7.1.5",
+    "vite-plugin-ruby": "^5.1.1"
+  },
+  "dependencies": {
+    "@inertiajs/react": "^2.1.6",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.13",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "react": "^19.1.1",
+    "axios": "^0.27.2",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "@inertiajs/server": "^0.1.0"
   },
   "peerDependencies": {
     "typescript": "^5"
