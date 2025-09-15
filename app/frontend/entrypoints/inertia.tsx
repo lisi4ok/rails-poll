@@ -8,21 +8,28 @@ type ResolvedComponent = {
   layout?: (page: ReactNode) => ReactNode
 }
 
+const appName = import.meta.env.VITE_APP_NAME || 'Rails';
+
 createInertiaApp({
   // Set default page title
   // see https://inertia-rails.dev/guide/title-and-meta
   //
   // title: title => title ? `${title} - App` : 'App',
+  title: title => title ? `${title} - ${appName}` : `${appName}`,
 
   // Disable progress bar
   //
   // see https://inertia-rails.dev/guide/progress-indicators
   // progress: false,
+  progress: {
+    color: '#4B5563',
+  },
 
-  resolve: (name) => {
-    const pages = import.meta.glob<ResolvedComponent>('../pages/**/*.tsx', {
-      eager: true,
-    })
+  resolve: (name: string): ResolvedComponent => {
+    const pages: Record<string, ResolvedComponent> =
+        import.meta.glob<ResolvedComponent>('../pages/**/*.tsx', {
+          eager: true,
+      })
     const page = pages[`../pages/${name}.tsx`]
     if (!page) {
       console.error(`Missing Inertia page component: '${name}.tsx'`)
@@ -37,12 +44,12 @@ createInertiaApp({
     return page
   },
 
-  setup({ el, App, props }) {
+  setup({ el, App, props }): void {
     if (el) {
       createRoot(el).render(createElement(App, props))
     } else {
       console.error(
-        'Missing root element.\n\n' +
+          'Missing root element.\n\n' +
           'If you see this error, it probably means you load Inertia.js on non-Inertia pages.\n' +
           'Consider moving <%= vite_typescript_tag "inertia" %> to the Inertia-specific layout instead.',
       )
